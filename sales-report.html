@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report - Admin Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb', // blue-600
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            @page {
+                size: landscape;
+                margin: 1cm;
+            }
+            body {
+                background: white;
+            }
+            aside, header, #filter-section, #print-btn {
+                display: none !important;
+            }
+            main {
+                padding: 0 !important;
+                margin: 0 !important;
+                overflow: visible !important;
+            }
+            #report-container {
+                box-shadow: none !important;
+                border: none !important;
+            }
+            #summary-cards {
+                margin-bottom: 2rem !important;
+            }
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+            }
+            th, td {
+                border: 1px solid #e2e8f0 !important;
+                padding: 8px !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 h-screen flex overflow-hidden font-sans antialiased text-slate-600 selection:bg-blue-100 selection:text-blue-700">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 text-slate-400 flex-shrink-0 flex flex-col transition-all duration-300 shadow-xl z-20">
+        <!-- Logo Area -->
+        <div class="h-16 flex items-center px-6 border-b border-slate-800/50">
+            <div class="flex items-center gap-2 text-white font-bold text-xl tracking-tight">
+                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                taskeasy.io
+            </div>
+        </div>
+        
+        <!-- Navigation Area -->
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-8">
+            <!-- MAIN -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Main</h3>
+                <a href="index.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a href="invoices.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="file-text" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Invoices</span>
+                </a>
+            </div>
+
+            <!-- MASTERS -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Masters</h3>
+                <a href="investigations.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="microscope" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Investigations</span>
+                </a>
+                <a href="patients.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="users" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Customers</span>
+                </a>
+                <a href="referrers.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="user-check" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Referrers</span>
+                </a>
+            </div>
+
+            <!-- REPORTS -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Reports</h3>
+                <a href="sales-report.html" class="flex items-center gap-3 px-4 py-2.5 bg-slate-800 text-white rounded-lg transition-colors group">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5 text-blue-500"></i>
+                    <span class="font-medium">Sales Report</span>
+                </a>
+                <a href="commissions.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="percent" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Commissions</span>
+                </a>
+            </div>
+
+            <!-- SYSTEM -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">System</h3>
+                <a href="settings.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="sliders-horizontal" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Settings</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer/Logout Area -->
+        <div class="p-4 border-t border-slate-800/50 mb-2">
+            <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors group">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span class="font-medium">Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="flex-1 flex flex-col h-full min-w-0 relative">
+        
+        <!-- Header -->
+        <header class="h-16 bg-white border-b border-slate-200 sticky top-0 z-30 flex items-center justify-between px-6 shadow-sm transition-all duration-300">
+            <!-- Left Header Content -->
+            <div class="flex items-center">
+                <h1 class="text-sm font-semibold text-slate-700">Sales Report</h1>
+            </div>
+            
+            <!-- Right Header Content -->
+            <div class="flex items-center gap-6">
+                <!-- Create Invoice Button -->
+                <a href="create-invoice.html" class="bg-blue-50 text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-colors">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    Create Invoice
+                </a>
+
+                <!-- User Profile -->
+                <div class="flex items-center gap-3 pl-6 border-l border-slate-200 h-8">
+                    <span class="text-sm text-slate-500">Welcome, Admin</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-6 scroll-smooth">
+            
+            <!-- Filter Section -->
+            <div id="filter-section" class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 mb-6">
+                <div class="flex items-center gap-2 mb-4 text-slate-800">
+                    <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                        <i data-lucide="filter" class="w-4 h-4"></i>
+                    </div>
+                    <h2 class="font-bold text-lg">Filter Report</h2>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-end gap-4">
+                    <div class="w-full md:w-auto flex-1 space-y-1.5">
+                        <label class="text-xs font-bold text-slate-500 uppercase">Start Date</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="calendar" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <input type="date" id="dateFrom" class="w-full pl-10 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all cursor-pointer">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-auto flex-1 space-y-1.5">
+                        <label class="text-xs font-bold text-slate-500 uppercase">End Date</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-lucide="calendar" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <input type="date" id="dateTo" class="w-full pl-10 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all cursor-pointer">
+                        </div>
+                    </div>
+                    <button onclick="updateReport()" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition-colors shadow-sm active:scale-[0.98]">
+                        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                        Update Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div id="summary-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Total Sales -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col justify-between h-32">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Sales</span>
+                    </div>
+                    <span id="summary-total" class="text-3xl font-bold text-slate-800">৳ 0</span>
+                </div>
+
+                <!-- Collected -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col justify-between h-32">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Collected</span>
+                    </div>
+                    <span id="summary-collected" class="text-3xl font-bold text-emerald-600">৳ 0</span>
+                </div>
+
+                <!-- Total Due -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col justify-between h-32">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
+                            <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Due</span>
+                    </div>
+                    <span id="summary-due" class="text-3xl font-bold text-red-600">৳ 0</span>
+                </div>
+
+                <!-- Invoices Count -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col justify-between h-32">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-600">
+                            <i data-lucide="hash" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Invoices</span>
+                    </div>
+                    <span id="summary-count" class="text-3xl font-bold text-cyan-600">0</span>
+                </div>
+            </div>
+
+            <!-- Report Table -->
+            <div id="report-container" class="bg-white rounded-xl shadow-sm border border-slate-100 flex flex-col min-h-[400px]">
+                <div class="p-6 border-b border-slate-50 flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-slate-800">Detailed Sales List</h3>
+                    <button id="print-btn" onclick="window.print()" class="text-slate-500 hover:text-slate-700 font-bold text-sm flex items-center gap-2 transition-colors">
+                        <i data-lucide="printer" class="w-4 h-4"></i>
+                        Print Report
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Invoice #</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Customer</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Total</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Paid</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Due</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="report-list" class="divide-y divide-slate-50">
+                            <!-- Rows injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+        
+    </div>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <!-- Page Logic -->
+    <script src="js/sales-report.js"></script>
+</body>
+</html>

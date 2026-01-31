@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Settings - TaskEasy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb', // blue-600
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 h-screen flex overflow-hidden font-sans antialiased text-slate-600 selection:bg-blue-100 selection:text-blue-700">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 text-slate-400 flex-shrink-0 flex flex-col transition-all duration-300 shadow-xl z-20">
+        <!-- Logo Area -->
+        <div class="h-16 flex items-center px-6 border-b border-slate-800/50">
+            <div class="flex items-center gap-2 text-white font-bold text-xl tracking-tight">
+                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                taskeasy.io
+            </div>
+        </div>
+        
+        <!-- Navigation Area -->
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-8">
+            <!-- MAIN -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Main</h3>
+                <a href="index.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a href="invoices.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="file-text" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Invoices</span>
+                </a>
+            </div>
+
+            <!-- MASTERS -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Masters</h3>
+                <a href="investigations.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="microscope" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Investigations</span>
+                </a>
+                <a href="patients.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="users" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Customers</span>
+                </a>
+                <a href="referrers.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="user-check" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Referrers</span>
+                </a>
+            </div>
+
+            <!-- REPORTS -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Reports</h3>
+                <a href="sales-report.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Sales Report</span>
+                </a>
+                <a href="commissions.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="percent" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Commissions</span>
+                </a>
+            </div>
+
+            <!-- SYSTEM -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">System</h3>
+                <a href="settings.html" class="flex items-center gap-3 px-4 py-2.5 bg-slate-800 text-white rounded-lg transition-colors group">
+                    <i data-lucide="sliders-horizontal" class="w-5 h-5 text-blue-500"></i>
+                    <span class="font-medium">Settings</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer/Logout Area -->
+        <div class="p-4 border-t border-slate-800/50 mb-2">
+            <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors group">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span class="font-medium">Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="flex-1 flex flex-col h-full min-w-0 relative">
+        
+        <!-- Header -->
+        <header class="h-16 bg-white border-b border-slate-200 sticky top-0 z-30 flex items-center justify-between px-6 shadow-sm">
+            <!-- Left Header Content -->
+            <div class="flex items-center">
+                <h1 class="text-lg font-bold text-slate-800">Application Settings</h1>
+            </div>
+            
+            <!-- Right Header Content -->
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-3 pl-6 border-l border-slate-200 h-8">
+                    <span class="text-sm text-slate-500">Welcome, Admin</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-6 scroll-smooth">
+            <div class="max-w-4xl mx-auto space-y-8">
+
+                <!-- Header -->
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">Settings</h2>
+                    <p class="text-sm text-slate-500 mt-1">Manage your application preferences and branding.</p>
+                </div>
+
+                <!-- Branding Section -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+                        <h3 class="font-bold text-slate-800">Store Branding</h3>
+                        <p class="text-xs text-slate-500 mt-1">Customize how your invoice and app looks.</p>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <!-- Logo Upload -->
+                        <div class="flex items-start gap-6">
+                            <div class="w-24 h-24 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden relative group">
+                                <img id="logoPreview" src="" alt="Logo" class="w-full h-full object-contain hidden">
+                                <div id="logoPlaceholder" class="flex flex-col items-center justify-center text-slate-400">
+                                    <i data-lucide="image" class="w-8 h-8 mb-1"></i>
+                                    <span class="text-[10px] uppercase font-bold">No Logo</span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Company Logo</label>
+                                <div class="flex items-center gap-3">
+                                    <label class="px-4 py-2 bg-white border border-slate-300 rounded-lg text-sm font-medium text-slate-700 cursor-pointer hover:bg-slate-50 transition-colors shadow-sm">
+                                        Upload New
+                                        <input type="file" id="logoInput" class="hidden" accept="image/*">
+                                    </label>
+                                    <button id="removeLogoBtn" class="px-4 py-2 bg-white border border-red-200 text-red-600 rounded-lg text-sm font-medium hover:bg-red-50 transition-colors hidden">
+                                        Remove
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-2">Recommended size: 200x200px. Max size: 2MB.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- App Name -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">Application Name</label>
+                                <input type="text" id="appName" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" placeholder="e.g. TaskEasy Diagnostics">
+                            </div>
+                            
+                            <!-- Contact Phone -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">Contact Phone</label>
+                                <input type="text" id="contactPhone" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" placeholder="e.g. +1 (555) 123-4567">
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Business Address</label>
+                            <textarea id="address" rows="3" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none" placeholder="Enter full business address..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configuration Section -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+                        <h3 class="font-bold text-slate-800">Configuration</h3>
+                        <p class="text-xs text-slate-500 mt-1">General system preferences.</p>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <!-- Sidebar Theme -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-3">Sidebar Theme</label>
+                            <div class="flex gap-4">
+                                <label class="relative cursor-pointer group">
+                                    <input type="radio" name="sidebarTheme" value="dark" class="peer sr-only" checked>
+                                    <div class="w-32 h-20 bg-slate-900 rounded-lg border-2 border-transparent peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-200 transition-all shadow-sm flex items-center justify-center">
+                                        <span class="text-slate-400 font-medium">Dark</span>
+                                    </div>
+                                    <div class="absolute top-2 right-2 w-4 h-4 bg-blue-500 rounded-full border-2 border-white opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                                </label>
+                                <label class="relative cursor-pointer group">
+                                    <input type="radio" name="sidebarTheme" value="light" class="peer sr-only">
+                                    <div class="w-32 h-20 bg-white rounded-lg border-2 border-slate-200 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-200 transition-all shadow-sm flex items-center justify-center">
+                                        <span class="text-slate-600 font-medium">Light</span>
+                                    </div>
+                                    <div class="absolute top-2 right-2 w-4 h-4 bg-blue-500 rounded-full border-2 border-white opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Currency Settings -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Default Currency</label>
+                            <div class="flex items-center gap-3 max-w-sm">
+                                <div class="relative flex-1">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <span id="currencySymbolPreview" class="text-slate-500 font-bold">$</span>
+                                    </div>
+                                    <input type="text" id="currencyCodeDisplay" readonly class="pl-8 pr-3 py-2 w-full bg-slate-100 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 cursor-not-allowed" value="USD - US Dollar">
+                                </div>
+                                <button onclick="openCurrencyModal()" class="px-4 py-2 bg-white border border-slate-300 hover:border-blue-300 text-slate-700 hover:text-blue-600 rounded-lg text-sm font-medium transition-all shadow-sm">
+                                    Change
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save Actions -->
+                <div class="flex items-center justify-end gap-3 pt-4 pb-12">
+                    <button class="px-6 py-2.5 bg-white border border-slate-300 text-slate-700 font-medium rounded-lg hover:bg-slate-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button onclick="saveSettings()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                        <i data-lucide="save" class="w-4 h-4"></i>
+                        Save Changes
+                    </button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Currency Selection Modal -->
+    <div id="currencyModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden z-50 flex items-center justify-center opacity-0 transition-opacity duration-200">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md transform scale-95 transition-transform duration-200" id="currencyModalContent">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50 rounded-t-xl">
+                <h3 class="font-bold text-slate-800 text-lg">Select Currency</h3>
+                <button onclick="closeCurrencyModal()" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-2 max-h-[400px] overflow-y-auto">
+                <div class="space-y-1" id="currencyList">
+                    <!-- Currency items injected via JS -->
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/50 rounded-b-xl flex justify-end">
+                <button onclick="closeCurrencyModal()" class="px-4 py-2 bg-white border border-slate-300 text-slate-700 font-medium rounded-lg hover:bg-slate-50 transition-colors text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-6 py-3 rounded-lg shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 z-50">
+        <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white">
+            <i data-lucide="check" class="w-4 h-4"></i>
+        </div>
+        <span class="font-medium">Settings saved successfully</span>
+    </div>
+
+    <script src="js/settings.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
