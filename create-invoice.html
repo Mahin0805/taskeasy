@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Invoice - Admin Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb', // blue-600
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 h-screen flex overflow-hidden font-sans antialiased text-slate-600 selection:bg-blue-100 selection:text-blue-700">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 text-slate-400 flex-shrink-0 flex flex-col transition-all duration-300 shadow-xl z-20">
+        <!-- Logo Area -->
+        <div class="h-16 flex items-center px-6 border-b border-slate-800/50">
+            <div class="flex items-center gap-2 text-white font-bold text-xl tracking-tight">
+                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                taskeasy.io
+            </div>
+        </div>
+        
+        <!-- Navigation Area -->
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-8">
+            <!-- MAIN -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Main</h3>
+                <a href="index.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Dashboard</span>
+                </a>
+                <a href="invoices.html" class="flex items-center gap-3 px-4 py-2.5 bg-slate-800 text-white rounded-lg transition-colors group">
+                    <i data-lucide="file-text" class="w-5 h-5 text-blue-500"></i>
+                    <span class="font-medium">Invoices</span>
+                </a>
+            </div>
+
+            <!-- MASTERS -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Masters</h3>
+                <a href="#" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="microscope" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Investigations</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="users" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Customers</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="user-check" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Referrers</span>
+                </a>
+            </div>
+
+            <!-- REPORTS -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Reports</h3>
+                <a href="#" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Sales Report</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="percent" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Commissions</span>
+                </a>
+            </div>
+
+            <!-- SYSTEM -->
+            <div class="space-y-2">
+                <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">System</h3>
+                <a href="#" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="sliders-horizontal" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                    <span class="font-medium">Settings</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer/Logout Area -->
+        <div class="p-4 border-t border-slate-800/50 mb-2">
+            <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors group">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span class="font-medium">Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="flex-1 flex flex-col h-full min-w-0 relative">
+        
+        <!-- Header -->
+        <header class="h-16 bg-white border-b border-slate-200 sticky top-0 z-30 flex items-center justify-between px-6 shadow-sm transition-all duration-300">
+            <!-- Left Header Content -->
+            <div class="flex items-center gap-4">
+                <a href="invoices.html" class="p-2 -ml-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </a>
+                <h1 class="text-sm font-semibold text-slate-700">Create New Invoice</h1>
+            </div>
+            
+            <!-- Right Header Content -->
+            <div class="flex items-center gap-6">
+                <!-- User Profile -->
+                <div class="flex items-center gap-3 pl-6 border-l border-slate-200 h-8">
+                    <span class="text-sm text-slate-500">Welcome, Admin</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-6 scroll-smooth">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+                    <div class="mb-6">
+                        <h2 class="text-xl font-bold text-slate-800">Invoice Details</h2>
+                        <p class="text-sm text-slate-500 mt-1">Fill in the information below to create a new invoice.</p>
+                    </div>
+
+                    <form id="form-create-invoice" class="space-y-6">
+                        <!-- Patient Details -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 uppercase">Patient Name</label>
+                                <input type="text" id="input-patient-name" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 uppercase">Phone Number</label>
+                                <input type="tel" id="input-phone" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
+                            </div>
+                        </div>
+
+                        <!-- Date -->
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold text-slate-500 uppercase">Invoice Date</label>
+                            <input type="date" id="input-date" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
+                        </div>
+
+                        <div class="border-t border-slate-100 my-6"></div>
+
+                        <!-- Financials -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 uppercase">Total Amount</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2 text-slate-400 text-sm">৳</span>
+                                    <input type="number" id="input-total" min="0" required class="w-full pl-8 pr-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
+                                </div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 uppercase">Discount</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2 text-slate-400 text-sm">৳</span>
+                                    <input type="number" id="input-discount" min="0" value="0" class="w-full pl-8 pr-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
+                                </div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 uppercase">Paid Amount</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2 text-slate-400 text-sm">৳</span>
+                                    <input type="number" id="input-paid" min="0" value="0" class="w-full pl-8 pr-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="pt-6 flex items-center justify-end gap-3">
+                            <a href="invoices.html" class="px-6 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+                                Cancel
+                            </a>
+                            <button type="submit" class="px-6 py-2.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm hover:shadow-md">
+                                Save Invoice
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+    </div>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+        // Set default date
+        document.getElementById('input-date').valueAsDate = new Date();
+    </script>
+    <!-- Page Logic -->
+    <script src="js/create-invoice.js"></script>
+</body>
+</html>
