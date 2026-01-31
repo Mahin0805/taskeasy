@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investigations - Admin Dashboard</title>
+    <title>Referrers - Admin Dashboard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons CDN -->
@@ -50,16 +50,16 @@
             <!-- MASTERS -->
             <div class="space-y-2">
                 <h3 class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Masters</h3>
-                <a href="investigations.html" class="flex items-center gap-3 px-4 py-2.5 bg-slate-800 text-white rounded-lg transition-colors group">
-                    <i data-lucide="microscope" class="w-5 h-5 text-blue-500"></i>
+                <a href="investigations.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
+                    <i data-lucide="microscope" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
                     <span class="font-medium">Investigations</span>
                 </a>
                 <a href="patients.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
                     <i data-lucide="users" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
                     <span class="font-medium">Customers</span>
                 </a>
-                <a href="referrers.html" class="flex items-center gap-3 px-4 py-2.5 hover:text-slate-200 hover:bg-slate-800/50 rounded-lg transition-colors group">
-                    <i data-lucide="user-check" class="w-5 h-5 group-hover:text-blue-400 transition-colors"></i>
+                <a href="referrers.html" class="flex items-center gap-3 px-4 py-2.5 bg-slate-800 text-white rounded-lg transition-colors group">
+                    <i data-lucide="user-check" class="w-5 h-5 text-blue-500"></i>
                     <span class="font-medium">Referrers</span>
                 </a>
             </div>
@@ -103,16 +103,22 @@
         <header class="h-16 bg-white border-b border-slate-200 sticky top-0 z-30 flex items-center justify-between px-6 shadow-sm transition-all duration-300">
             <!-- Left Header Content -->
             <div class="flex items-center">
-                <h1 class="text-sm font-semibold text-slate-700">Investigations</h1>
+                <h1 class="text-sm font-semibold text-slate-700">Medical Referrers</h1>
             </div>
             
             <!-- Right Header Content -->
             <div class="flex items-center gap-6">
-                <!-- Add Investigation Button -->
-                <button onclick="openModal('add')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-colors shadow-sm">
+                <!-- Add Referrer Button -->
+                <button onclick="openReferrerModal('add')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-colors shadow-sm">
                     <i data-lucide="plus" class="w-4 h-4"></i>
-                    Add Investigation
+                    Add Referrer
                 </button>
+
+                <!-- Create Invoice Button -->
+                <a href="create-invoice.html" class="bg-blue-50 text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-colors">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    Create Invoice
+                </a>
 
                 <!-- User Profile -->
                 <div class="flex items-center gap-3 pl-6 border-l border-slate-200 h-8">
@@ -126,14 +132,14 @@
 
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto p-6 scroll-smooth">
-            <!-- Investigation Catalog Card -->
+            <!-- Referrer Directory Card -->
             <div class="bg-white rounded-xl shadow-sm border border-slate-100 flex flex-col h-full min-h-[600px]">
                 
                 <!-- Card Header with Search -->
                 <div class="p-6 border-b border-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h2 class="text-xl font-bold text-slate-800">Investigation Catalog</h2>
-                        <p class="text-sm text-slate-500 mt-1">Manage all available medical tests and pricing</p>
+                        <h2 class="text-xl font-bold text-slate-800">Referrer Directory</h2>
+                        <p class="text-sm text-slate-500 mt-1">Manage doctors and agents who refer patients</p>
                     </div>
                     
                     <!-- Search Input -->
@@ -141,7 +147,7 @@
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
                         </div>
-                        <input type="text" placeholder="Search by test name..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all placeholder:text-slate-400">
+                        <input type="text" placeholder="Search by name or phone..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all placeholder:text-slate-400">
                     </div>
                 </div>
 
@@ -150,14 +156,14 @@
                     <table class="w-full text-left border-collapse">
                         <thead class="bg-slate-50 border-b border-slate-200">
                             <tr>
-                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Investigation Name</th>
-                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Category</th>
-                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Price</th>
-                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Referrer Name</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Contact</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Commission</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Notes</th>
                                 <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="investigation-list" class="divide-y divide-slate-100">
+                        <tbody id="referrer-list" class="divide-y divide-slate-100">
                             <!-- Rows injected via JS -->
                         </tbody>
                     </table>
@@ -174,64 +180,47 @@
         
     </div>
 
-    <!-- Initialize Icons -->
-    <script>
-        lucide.createIcons();
-    </script>
-    <!-- Page Logic -->
-    <script src="js/investigations.js"></script>
-
-    <!-- Add/Edit Investigation Modal -->
-    <div id="modal-investigation" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+    <!-- Add/Edit Referrer Modal -->
+    <div id="modal-referrer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
         <!-- Backdrop -->
-        <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity" onclick="closeReferrerModal()"></div>
         
         <!-- Modal Panel -->
         <div class="fixed inset-0 flex items-center justify-center p-4">
             <div class="bg-white rounded-xl shadow-xl w-full max-w-md transform transition-all overflow-hidden flex flex-col">
                 <!-- Header -->
                 <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                    <h3 id="modal-title" class="text-lg font-bold text-slate-800">Add Investigation</h3>
-                    <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <h3 id="modal-title" class="text-lg font-bold text-slate-800">Add New Referrer</h3>
+                    <button onclick="closeReferrerModal()" class="text-slate-400 hover:text-slate-600 transition-colors">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
                 </div>
                 
                 <!-- Body -->
                 <div class="p-6">
-                    <form id="form-investigation" class="space-y-4">
+                    <form id="form-referrer" class="space-y-4">
                         <!-- Name -->
                         <div class="space-y-1.5">
-                            <label class="text-xs font-bold text-slate-500 uppercase">Investigation Name <span class="text-red-500">*</span></label>
+                            <label class="text-xs font-bold text-slate-500 uppercase">Referrer Name <span class="text-red-500">*</span></label>
                             <input type="text" id="input-name" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
                         </div>
 
-                        <!-- Category -->
+                        <!-- Phone -->
                         <div class="space-y-1.5">
-                            <label class="text-xs font-bold text-slate-500 uppercase">Category</label>
-                            <select id="input-category" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all cursor-pointer">
-                                <option value="Cardiology">Cardiology</option>
-                                <option value="Radiology">Radiology</option>
-                                <option value="Pathology">Pathology</option>
-                                <option value="Biochemistry">Biochemistry</option>
-                                <option value="Microbiology">Microbiology</option>
-                                <option value="Other">Other</option>
-                            </select>
+                            <label class="text-xs font-bold text-slate-500 uppercase">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="tel" id="input-phone" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
                         </div>
 
-                        <!-- Price -->
+                        <!-- Commission -->
                         <div class="space-y-1.5">
-                            <label class="text-xs font-bold text-slate-500 uppercase">Price (৳) <span class="text-red-500">*</span></label>
-                            <input type="number" id="input-price" required min="0" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
+                            <label class="text-xs font-bold text-slate-500 uppercase">Commission Rate (%) <span class="text-red-500">*</span></label>
+                            <input type="number" id="input-commission" min="0" max="100" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all">
                         </div>
 
-                        <!-- Status -->
+                        <!-- Notes -->
                         <div class="space-y-1.5">
-                            <label class="text-xs font-bold text-slate-500 uppercase">Status</label>
-                            <select id="input-status" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all cursor-pointer">
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
+                            <label class="text-xs font-bold text-slate-500 uppercase">Notes (Optional)</label>
+                            <textarea id="input-notes" rows="3" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-300 transition-all resize-none"></textarea>
                         </div>
 
                         <!-- Hidden ID for Edit Mode -->
@@ -241,15 +230,22 @@
 
                 <!-- Footer -->
                 <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-end gap-3">
-                    <button type="button" onclick="closeModal()" class="px-4 py-2 text-sm font-bold text-slate-600 hover:bg-slate-200/50 rounded-lg transition-colors">
+                    <button type="button" onclick="closeReferrerModal()" class="px-4 py-2 text-sm font-bold text-slate-600 hover:bg-slate-200/50 rounded-lg transition-colors">
                         Cancel
                     </button>
-                    <button type="button" onclick="saveInvestigation()" class="px-4 py-2 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm hover:shadow-md">
-                        Save
+                    <button type="button" onclick="saveReferrer()" class="px-4 py-2 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm hover:shadow-md">
+                        Save Referrer
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <!-- Page Logic -->
+    <script src="js/referrers.js"></script>
 </body>
 </html>
