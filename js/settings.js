@@ -8,7 +8,6 @@ let settings = {
         symbol: "$",
         name: "US Dollar"
     },
-    theme: "dark", // 'dark' or 'light' sidebar
     logo: null // DataURL string
 };
 
@@ -75,10 +74,6 @@ function loadSettings() {
 
     // Currency
     updateCurrencyView();
-
-    // Theme (Radio Buttons)
-    const themeRadio = document.querySelector(`input[name="sidebarTheme"][value="${settings.theme}"]`);
-    if (themeRadio) themeRadio.checked = true;
 
     // Logo
     updateLogoView();
@@ -173,9 +168,6 @@ function saveSettings() {
     settings.phone = elements.phone.value;
     settings.address = elements.address.value;
     
-    const selectedTheme = document.querySelector('input[name="sidebarTheme"]:checked');
-    if (selectedTheme) settings.theme = selectedTheme.value;
-
     console.log('Settings Saved:', settings);
     showToast();
 }
