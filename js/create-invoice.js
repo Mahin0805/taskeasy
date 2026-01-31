@@ -5,6 +5,7 @@ document.getElementById('form-create-invoice').addEventListener('submit', functi
     const patientName = document.getElementById('input-patient-name').value;
     const phone = document.getElementById('input-phone').value;
     const dateInput = document.getElementById('input-date').value;
+    // Total is hardcoded to 1200 for now based on the UI selection, but we should read it
     const total = parseFloat(document.getElementById('input-total').value) || 0;
     const discount = parseFloat(document.getElementById('input-discount').value) || 0;
     const paid = parseFloat(document.getElementById('input-paid').value) || 0;
@@ -35,8 +36,6 @@ document.getElementById('form-create-invoice').addEventListener('submit', functi
     };
 
     // Serialize and redirect
-    // Note: In a real app with backend, we would POST this data.
-    // Here we pass it via URL params to simulate persistence on the next page.
     const params = new URLSearchParams();
     params.set('newInvoice', JSON.stringify(newInvoice));
     
